@@ -10,11 +10,27 @@ function SpacecraftBuilder() {
     setInventory((inventory) => [...inventory, { ...newItem, id: uuid() }]);
   };
 
+  const deleteItem = (itemId) => {
+    setInventory((inventory) => inventory.filter((item) => item.id !== itemId));
+  };
+
   return (
     <div>
       <h1>Spacecraft Builder</h1>
       <ItemForm addItem={addItem} />
-      <InventoryDisplay inventory={inventory} />
+      <div>
+        <h3>Inventory</h3>
+        {inventory.map(({ id, name, qty, purpose }) => (
+          <InventoryDisplay
+            key={id}
+            id={id}
+            name={name}
+            qty={qty}
+            purpose={purpose}
+            deleteItem={deleteItem}
+          />
+        ))}
+      </div>
     </div>
   );
 }
