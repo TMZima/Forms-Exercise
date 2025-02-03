@@ -1,0 +1,14 @@
+.InventoryDisplay-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.InventoryDisplay-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  border: 1px solid white;
+  margin-bottom: 10px;
+}

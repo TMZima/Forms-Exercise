@@ -1,4 +1,7 @@
 import React from "react";
+import ItemCard from "./ItemCard";
+import ItemAction from "./ItemAction";
+import "./InventoryDisplay.css";
 
 function InventoryDisplay({ id, name, qty, purpose, deleteItem }) {
   const handleClick = () => {
@@ -6,12 +9,12 @@ function InventoryDisplay({ id, name, qty, purpose, deleteItem }) {
   };
 
   return (
-    <div>
-      <ul>
-        <li>{name}</li>
-        <li>Quantity: {qty}</li>
-        <li>Purpose: {purpose}</li>
-        <button onClick={handleClick}>Delete</button>
+    <div className="InventoryDisplay">
+      <ul className="InventoryDisplay-ul">
+        <li className="InventoryDisplay-li">
+          <ItemCard key={id} name={name} qty={qty} purpose={purpose} />
+          <ItemAction handleClick={handleClick} />
+        </li>
       </ul>
     </div>
   );

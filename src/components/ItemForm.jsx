@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
+import "./ItemForm.css";
 
 function ItemForm({ addItem }) {
   const INITIAL_STATE = {
@@ -10,6 +10,7 @@ function ItemForm({ addItem }) {
 
   const [formData, setFormData] = useState(INITIAL_STATE);
   const [agreed, setAgreed] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,19 +24,33 @@ function ItemForm({ addItem }) {
     }
   };
 
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.qty) newErrors.qty = "Quantity is required";
+    if (!formData.purpose) newErrors.purpose = "Purpose is required";
+    if (!agreed) newErrors.terms = "You must agree to the terms";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addItem({ ...formData });
-    setFormData(INITIAL_STATE);
-    setAgreed(false);
+    if (validate()) {
+      addItem({ ...formData });
+      setFormData(INITIAL_STATE);
+      setAgreed(false);
+      setErrors({});
+    }
   };
 
   return (
-    <div>
+    <div className="ItemForm">
       <h3>Add an Item to the Inventory</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name"></label>
         <input
+          className={`ItemForm-text ${errors.name ? "error" : ""}`}
           id="name"
           type="text"
           name="name"
@@ -45,6 +60,7 @@ function ItemForm({ addItem }) {
         />
         <label htmlFor="qty"></label>
         <input
+          className={`ItemForm-text ${errors.qty ? "error" : ""}`}
           id="qty"
           type="text"
           name="qty"
@@ -53,16 +69,20 @@ function ItemForm({ addItem }) {
           onChange={handleChange}
         />
         <label htmlFor="purpose"></label>
-        <input
+        <textarea
+          className={`ItemForm-purpose ${errors.purpose ? "error" : ""}`}
           id="purpose"
-          type="text"
           name="purpose"
           placeholder="Purpose"
           value={formData.purpose}
           onChange={handleChange}
         />
-        <label htmlFor="terms">
+        <label
+          className={`ItemForm-terms ${errors.terms ? "error" : ""}`}
+          htmlFor="terms"
+        >
           <input
+            className="ItemForm-checkbox"
             id="terms"
             type="checkbox"
             checked={agreed}
@@ -71,7 +91,7 @@ function ItemForm({ addItem }) {
           />
           Agree to Terms
         </label>
-        <button>Add</button>
+        <button className="ItemForm-btn">Add</button>
       </form>
     </div>
   );

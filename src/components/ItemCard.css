@@ -1,0 +1,22 @@
+.ItemCard {
+  padding: 5px;
+  margin: 0;
+  color: white;
+}
+
+.ItemCard-name {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px;
+}
+
+.ItemCard-qty {
+  margin: 0;
+  padding: 0 0 0 15px;
+}
+
+.ItemCard-purpose {
+  margin: 0;
+  padding: 0 0 15px 15px;
+}

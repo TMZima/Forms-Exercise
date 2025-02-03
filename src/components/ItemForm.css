@@ -1,0 +1,67 @@
+.ItemForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ItemForm-text,
+.ItemForm-purpose,
+.ItemForm-terms {
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.ItemForm-text {
+  height: 30px;
+  padding-left: 10px;
+  background-color: transparent;
+}
+
+.ItemForm-purpose {
+  height: 80px;
+  padding: 10px;
+}
+
+.ItemForm-terms {
+  align-items: center;
+  padding: 10px;
+}
+
+.ItemForm-checkbox {
+  margin-right: 10px;
+}
+
+.ItemForm-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 140px;
+  margin-left: auto;
+  background-color: transparent;
+  color: white;
+  border: 2px solid green;
+  border-radius: 5px;
+}
+
+.error {
+  border-color: red;
+}
+
+.success {
+  border-color: green;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
